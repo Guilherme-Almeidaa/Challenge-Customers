@@ -4,6 +4,8 @@ import "./style.css";
 
 function Form() {
   const [type, setType] = useState("");
+  const [hour, setHours] = useState("");
+  console.log(hour);
   return (
     <section className="container-form">
       <form>
@@ -206,6 +208,7 @@ function Form() {
             </label>
             <input
               required
+              onChange={({ target }) => setHours(target.value)}
               className="input-form"
               type="date"
               name="date"
@@ -214,43 +217,45 @@ function Form() {
             />
           </div>
         </fieldset>
-        <div className="container-input">
-          <label className="label-form">Veículos ultilizados</label>
-          <label htmlFor="car">
-            {" "}
-            <input
-              className="input-form-radio"
-              id="car"
-              name="vehicle"
-              type="checkbox"
-              value="car"
-            />{" "}
-            Carro
-          </label>
+        <fieldset>
+          <div className="container-input">
+            <label className="label-form">Veículos ultilizados</label>
+            <label htmlFor="car">
+              {" "}
+              <input
+                className="input-form-radio"
+                id="car"
+                name="vehicle"
+                type="checkbox"
+                value="car"
+              />{" "}
+              Carro
+            </label>
 
-          <label htmlFor="truck">
-            {" "}
-            <input
-              className="input-form-radio"
-              id="truck"
-              name="vehicle"
-              type="checkbox"
-              value="truck"
-            />
-            Caminhão
-          </label>
-          <label htmlFor="motorcycle">
-            {" "}
-            <input
-              className="input-form-radio"
-              id="motorcycle"
-              name="vehicle"
-              type="checkbox"
-              value="motorcycle"
-            />
-            Caminhão
-          </label>
-        </div>
+            <label htmlFor="truck">
+              {" "}
+              <input
+                className="input-form-radio"
+                id="truck"
+                name="vehicle"
+                type="checkbox"
+                value="truck"
+              />
+              Caminhão
+            </label>
+            <label htmlFor="motorcycle">
+              {" "}
+              <input
+                className="input-form-radio"
+                id="motorcycle"
+                name="vehicle"
+                type="checkbox"
+                value="motorcycle"
+              />
+              Caminhão
+            </label>
+          </div>
+        </fieldset>
         <div className="container-button">
           <button type="submit" className="button-submit">
             Confirmar

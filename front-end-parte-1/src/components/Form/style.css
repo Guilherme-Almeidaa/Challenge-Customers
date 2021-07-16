@@ -15,6 +15,7 @@ form {
     border-radius: 10px;
     border:solid 1px rgb(2, 120, 255);
     margin-bottom: 30px;
+    font-weight: bold;
 }
 
 fieldset {
@@ -40,6 +41,8 @@ fieldset {
     width: 70%;
     padding: 5px;
 }
+
+
 
 .container-button {
     width: 100%;
@@ -90,6 +93,15 @@ fieldset {
 @media(max-width:600px) {
     .container-input {
         width: 95%;
+    }
+
+    .input-form-radio  {
+        width: 30px;
+        margin-bottom:  15px;
+    }
+
+    td {
+        font-weight: bold;
     }
     
     .select-form {
