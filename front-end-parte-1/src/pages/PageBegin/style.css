@@ -1,0 +1,46 @@
+.main-container {
+    margin:30px auto;
+    width: 600px;
+}
+ 
+table {
+    background-color: rgb(114, 110, 110);
+    text-align: left;
+    width: 100%;
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-fill-mode:forwards;
+    border-collapse: collapse;
+    transform: translateY(-20px);
+    z-index:1 ;
+}
+
+td,th {
+    padding: 10px;
+}
+
+thead {
+    background-color: #246355;
+    border-bottom: solid 5px #0f362d;
+    color:white;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(187, 182, 182);
+}
+
+tr:hover {
+    background-color: #369681;
+    color:white;
+    cursor: pointer;
+}
+
+@keyframes slide {
+    from {
+     opacity: 0;
+    }
+    to {
+     opacity: 1;
+     transform: translateY(0);
+    }
+}
