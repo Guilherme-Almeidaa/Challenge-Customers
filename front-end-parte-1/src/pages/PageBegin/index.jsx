@@ -17,7 +17,7 @@ function PageBegin() {
           <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Sobre Nome</th>
+            <th>Sobrenome</th>
             <th>Tipo</th>
           </tr>
         </thead>

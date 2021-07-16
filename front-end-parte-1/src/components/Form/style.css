@@ -1,0 +1,110 @@
+.container-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:30px;
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-fill-mode:forwards;
+    transform: translateY(-20px);
+}
+
+form {
+    width: 550px;
+    background-color: white;
+    border-radius: 10px;
+    border:solid 1px rgb(2, 120, 255);
+    margin-bottom: 30px;
+}
+
+fieldset {
+    display: flex;
+    border-radius: 7px;
+}
+
+.label-form {
+    margin-bottom: 5px;
+}
+
+.container-input {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.container-radio {
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 5px;
+}
+
+.container-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.input-form-radio {
+    margin-left: 10px;
+}
+
+.button-submit {
+  width: 60%;
+  margin: 10px;
+  border:none;
+  background-color: steelblue;
+  padding: 10px 5px 10px 5px;
+  font-size: larger;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.button-submit:hover {
+    background-color: rgb(127, 161, 189);
+    cursor: pointer;
+}
+
+.input-form {
+    height: 30px;
+}
+
+.select-form {
+    height: 30px;
+}
+
+@keyframes slide {
+    from {
+     opacity: 0;
+    }
+    to {
+     opacity: 1;
+     transform: translateY(0);
+    }
+}
+
+
+
+@media(max-width:600px) {
+    .container-input {
+        width: 95%;
+    }
+    
+    .select-form {
+        width: 60%;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .container-form {
+        width: 100%;
+    }
+
+    fieldset {
+        flex-direction: column;
+    }
+}
