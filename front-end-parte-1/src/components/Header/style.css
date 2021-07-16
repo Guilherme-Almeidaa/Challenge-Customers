@@ -32,6 +32,10 @@
     flex-wrap: wrap;
     margin-top: 0;
     width: 100%;
+    justify-content: flex-start;
+    border-bottom: solid white 2px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .label-header {
@@ -96,6 +100,65 @@
 
 .item-menu .link:hover {
     background-color: #333;
+}
+
+.search-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: auto;
+margin-left: 5px;
+background-color: #353b48;
+padding: 3px 3px;
+border-radius: 100px;
+
+ 
+}
+
+.search-button {
+    color: steelblue;
+    float:right;
+    width: 40px;
+    height: 40px;
+     border-radius: 50%;
+    background-color: #353b48;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+    border:none;
+    outline: none;
+    background: none;
+    padding: 0x;
+    color:white;
+    font-size: 16px;
+    transition: 0.4s;
+    width: 0px;
+    transition: all 0.4 linear;
+}
+
+.label-search {
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.search-container:hover > .search-input {
+    padding: 5px;
+    width: 200px;
+}
+
+.search-container:hover > .label-search {
+   background-color: rgb(36, 36, 36);
+}
+
+
+.icon-search {
+    width: 35px;
+    height: 35px;
+    float:right;
 }
 
 @media (max-width:600px) {

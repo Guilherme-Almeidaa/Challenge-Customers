@@ -99,6 +99,11 @@ fieldset {
     form {
         width: 100%;
     }
+    
+    .container-radio {
+        margin:auto;
+        width: 100%;
+    }
 
     .container-form {
         width: 100%;

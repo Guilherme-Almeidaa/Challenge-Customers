@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/LogLife-Logo.jpeg";
+import searchIcon from "../../images/search-icon.png";
 import "./style.css";
 
 function Header() {
@@ -22,6 +23,22 @@ function Header() {
         </label>
       </div>
       <img className="logo" src={logo} alt="logo" />
+      <div className="search-container">
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Pesquisa pelo nome"
+        />
+        <input
+          id="button-search"
+          type="text"
+          name="search"
+          style={{ display: "none" }}
+        />
+        <label className="label-search" htmlFor="button-search">
+          <img className="icon-search" src={searchIcon} alt="search-icon" />
+        </label>
+      </div>
       <ul className="menu">
         <li className="item-menu">
           <Link to="/" className="link">
