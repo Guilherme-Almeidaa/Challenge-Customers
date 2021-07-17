@@ -10,6 +10,7 @@ module.exports = {
         },
         onDelete: 'CASCADE',
         primaryKey: true,
+        unique: false,
       },
       vehicleId: {
         type: Sequelize.INTEGER,
@@ -19,6 +20,7 @@ module.exports = {
         },
         onDelete: 'CASCADE',
         primaryKey: true,
+        unique: false,
       }
 
     });

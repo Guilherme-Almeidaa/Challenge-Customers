@@ -20,9 +20,9 @@ module.exports = {
         updatedAt: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       {
-        name: 'Pedro',
-        lastName_corporateName: 'José',
-        type: 'Pessoa Física',
+        name: "Pedro",
+        lastName_corporateName: "José",
+        type: "Pessoa Física",
         status: true,
         cpf_cnpj: "123-123-123-10",
         email: "pedro.s.a@live.com",
@@ -41,3 +41,5 @@ module.exports = {
 
   down: async (queryInterface) => queryInterface.bulkDelete('Customers', null, {}),
 };
+
+
