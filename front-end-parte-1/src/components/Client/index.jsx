@@ -4,18 +4,18 @@ function Client({ customer }) {
   return (
     <tr>
       <td>
-        <p>Id: </p> {customer.id}
+        <span>Id: </span> {customer.id}
       </td>
       <td>
-        <p>Nome:</p>
+        <span>Nome:</span>
         {customer.name}
       </td>
       <td>
-        <p>Sobrenome: </p>
+        <span>Sobrenome: </span>
         {customer.lastName}
       </td>
       <td>
-        <p>Tipo: </p>
+        <span>Tipo: </span>
         {customer.type}
       </td>
     </tr>

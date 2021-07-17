@@ -7,7 +7,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "data-config":"npx sequelize db:migrate:undo:all &&  npx sequelize db:migrate"
+    "data-config":"npx sequelize db:drop && npx sequelize db:create npx sequelize db:migrate:undo:all &&  npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",

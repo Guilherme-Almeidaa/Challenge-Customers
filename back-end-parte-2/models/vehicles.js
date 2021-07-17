@@ -1,15 +1,9 @@
 const Vehicles = (sequelize, DataTypes) => {
-  const Vehicles = sequelize.define("Vehicles", {
+  const Vehicles = sequelize.define("Vehicle", {
     type: DataTypes.STRING,
-    client_id: { type: DataTypes.INTEGER, foreignKey: true },
+  }, {
+    timestamps: false
   });
-
-  Vehicles.assiciate = (models) => {
-    Vehicles.belongsTo(models.customer, {
-      foreignKey: 'id',
-      as: 'customer',
-    });
-  };
 
   return Vehicles;
 };

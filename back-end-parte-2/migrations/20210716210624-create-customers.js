@@ -31,6 +31,26 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      cep: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      road: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      number: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      state: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       telephone: {
         allowNull: false,
         type: Sequelize.STRING
@@ -53,7 +73,7 @@ module.exports = {
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface, _Sequelize) => {
     await queryInterface.dropTable('Customers');
   }
 };
