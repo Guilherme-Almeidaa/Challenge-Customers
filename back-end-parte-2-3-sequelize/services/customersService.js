@@ -50,8 +50,7 @@ const findByName = async (name) => {
     const result = await Customer.findAll({
         where: {
             name: { [Op.like]: `%${name}%` }
-        }
-    }, {
+        },
         attributes: ['id', 'name', 'lastName_corporateName', 'type']
     })
 

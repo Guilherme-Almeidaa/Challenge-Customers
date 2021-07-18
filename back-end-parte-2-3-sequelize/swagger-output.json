@@ -53,7 +53,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref":"#/components/schemas/ClienteRetorno"
+              "$ref":"#/components/schemas/ClienteBusca"
             }
               
              
@@ -304,6 +304,15 @@
           }
         ]
     },
+    "ClienteBusca":{
+      "type":"object",
+      "example":{
+          "id": 1,
+          "name": "Guilherme",
+          "lastName_corporateName": "Almeida",
+          "type": "Pessoa Física"
+        }
+      },
     "Veiculos":{
       "type":"array",
       "example":[
