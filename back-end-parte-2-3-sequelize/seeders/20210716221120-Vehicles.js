@@ -6,7 +6,6 @@ module.exports = {
       },
       {
         type: "Carro",
-
       },
       {
         type: "Moto",
