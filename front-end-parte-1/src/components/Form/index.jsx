@@ -1,33 +1,70 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import context from "../../Provider/context";
 import states from "../../utilities/states";
 import "./style.css";
 
-function Form() {
-  const [type, setType] = useState("");
-  const [hour, setHours] = useState("");
-  console.log(hour);
+function Form({ handlerSubmit, match, deleteCustomer }) {
+  const {
+    customer,
+    setCustomer,
+    vehicles,
+    formatDate,
+    denyEdition,
+    statusError,
+    message,
+  } = useContext(context);
+
+  const handlerChange = ({ target }) => {
+    const name = target.name;
+    setCustomer({ ...customer, [name]: target.value });
+  };
+
+  const handlerChangeCheckBox = ({ target }) => {
+    const name = "vehicle";
+    const vehicleInsert = { id: Number(target.id), type: target.value };
+    const { vehicle } = customer;
+    if (vehicle.some((item) => item.id === Number(target.id))) {
+      const vehiclesLeftover = vehicle;
+      vehiclesLeftover.splice(vehiclesLeftover.indexOf(vehicleInsert), 1);
+      setCustomer({ ...customer, [name]: vehiclesLeftover });
+    } else {
+      setCustomer({
+        ...customer,
+        [name]: [...customer.vehicle, vehicleInsert],
+      });
+    }
+  };
+
+  console.log(match);
+
+  const checkIncludesVehicle = (vehicle) => {
+    return customer.vehicle.map((item) => item.id).includes(Number(vehicle.id));
+  };
+
   return (
     <section className="container-form">
-      <form>
+      <form onSubmit={handlerSubmit}>
         <fieldset>
           <div className="container-input">
             <label className="label-form" htmlFor="type">
               Tipo de cliente
             </label>
             <select
+              disabled={denyEdition}
               required
-              onChange={({ target }) => setType(target.value)}
               className="select-form"
               id="type"
-              value={type}
+              name="type"
+              value={customer.type}
+              onChange={handlerChange}
             >
               <option className="options" disabled value="">
                 Selecione
               </option>
-              <option className="options" value="physical">
+              <option className="options" value="Pessoa Física">
                 Pessoa Física
               </option>
-              <option className="options" value="legal">
+              <option className="options" value="Pessoa Jurídica">
                 Pessoa Jurídica
               </option>
             </select>
@@ -37,27 +74,49 @@ function Form() {
               Status
             </label>
             <div>
-              <label htmlFor="active">
+              <label
+                style={{
+                  color:
+                    customer.status.toString() === "true"
+                      ? "steelblue"
+                      : "black",
+                }}
+                htmlFor="active"
+              >
                 {" "}
                 <input
+                  onChange={handlerChange}
+                  disabled={denyEdition}
+                  checked={customer.status.toString() === "true"}
                   required
                   className="input-form-radio"
                   id="active"
                   name="status"
                   type="radio"
-                  value="active"
+                  value={"true"}
                 />{" "}
                 Ativo
               </label>
 
-              <label htmlFor="inactive">
+              <label
+                style={{
+                  color:
+                    customer.status.toString() === "false"
+                      ? "steelblue"
+                      : "black",
+                }}
+                htmlFor="inactive"
+              >
                 {" "}
                 <input
+                  onChange={handlerChange}
+                  disabled={denyEdition}
+                  checked={customer.status.toString() === "false"}
                   className="input-form-radio"
                   id="inactive"
                   name="status"
                   type="radio"
-                  value="inactive"
+                  value="false"
                 />
                 Inativo
               </label>
@@ -67,31 +126,45 @@ function Form() {
         <fieldset>
           <div className="container-input">
             <label className="label-form" htmlFor="name">
-              {type === "legal" ? "Nome fantasia" : "Nome o cliente"}
+              {customer.type === "Pessoa Jurídica"
+                ? "Nome fantasia"
+                : "Nome o cliente"}
             </label>
             <input
+              readOnly={denyEdition}
               required
               className="input-form"
               type="text"
               name="name"
               id="name"
+              value={customer.name}
+              onChange={handlerChange}
               placeholder={
-                type === "legal" ? "Nome fantasia" : "Nome o cliente"
+                customer.type === "Pessoa Jurídica"
+                  ? "Nome fantasia"
+                  : "Nome o cliente"
               }
             />
           </div>
           <div className="container-input">
             <label className="label-form" htmlFor="lastName">
-              {type === "legal" ? "Razão social" : "Sobrenome do Cliente"}
+              {customer.type === "Pessoa Jurídica"
+                ? "Razão social"
+                : "Sobrenome do Cliente"}
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="text"
-              name="lastName"
+              name="lastName_corporateName"
               id="lastName"
+              value={customer.lastName_corporateName}
               placeholder={
-                type === "legal" ? "Razão social" : "Sobrenome do Cliente"
+                customer.type === "Pessoa Jurídica"
+                  ? "Razão social"
+                  : "Sobrenome do Cliente"
               }
             />
           </div>
@@ -99,15 +172,18 @@ function Form() {
         <fieldset>
           <div className="container-input">
             <label className="label-form" htmlFor="cpf">
-              {type === "legal" ? "CNPJ" : "CPF"}
+              {customer.type === "Pessoa Jurídica" ? "CNPJ" : "CPF"}
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="text"
-              name="cpf"
+              name="cpf_cnpj"
               id="cpf"
-              placeholder={type === "legal" ? "CNPJ" : "CPF"}
+              value={customer.cpf_cnpj}
+              placeholder={customer.type === "Pessoa Jurídica" ? "CNPJ" : "CPF"}
             />
           </div>
           <div className="container-input">
@@ -115,11 +191,14 @@ function Form() {
               Email
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="email"
               name="email"
               id="email"
+              value={customer.email}
               placeholder="Email"
             />
           </div>
@@ -130,11 +209,14 @@ function Form() {
               Rua
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="text"
               name="road"
               id="road"
+              value={customer.road}
               placeholder="Rua"
             />
           </div>
@@ -143,26 +225,48 @@ function Form() {
               Número
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="text"
               name="number"
               id="number"
+              value={customer.number}
               placeholder="Número"
             />
           </div>
         </fieldset>
         <fieldset>
           <div className="container-input">
+            <label className="label-form" htmlFor="cep">
+              Cep
+            </label>
+            <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
+              required
+              className="input-form"
+              type="text"
+              name="cep"
+              id="cep"
+              value={customer.cep}
+              placeholder="Cep"
+            />
+          </div>
+          <div className="container-input">
             <label className="label-form" htmlFor="city">
               Cidade
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="text"
               name="city"
               id="city"
+              value={customer.city}
               placeholder="Cidade"
             />
           </div>
@@ -170,13 +274,22 @@ function Form() {
             <label className="label-form" htmlFor="state">
               Estado
             </label>
-            <select required className="select-form" id="state">
+            <select
+              onChange={handlerChange}
+              readOnly={denyEdition}
+              value={customer.state}
+              required
+              className="select-form"
+              id="state"
+              name="state"
+            >
               <option className="options" disabled value="">
                 Selecione
               </option>
               {states.map((state, index) => {
                 return (
                   <option
+                    readOnly={denyEdition}
                     key={index}
                     className="options"
                     value={Object.values(state)}
@@ -194,11 +307,14 @@ function Form() {
               Hoŕario final de atendimento
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
               className="input-form"
               type="time"
-              name="time"
+              name="service_hours"
               id="time"
+              value={customer.service_hours}
               placeholder="Cidade"
             />
           </div>
@@ -207,58 +323,90 @@ function Form() {
               Dia do atendimento
             </label>
             <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
               required
-              onChange={({ target }) => setHours(target.value)}
               className="input-form"
               type="date"
-              name="date"
+              name="service_date"
               id="date"
+              value={formatDate(customer.service_date)}
               placeholder="Cidade"
+            />
+          </div>
+          <div className="container-input">
+            <label className="label-form" htmlFor="telephone">
+              Telefone
+            </label>
+            <input
+              onChange={handlerChange}
+              readOnly={denyEdition}
+              className="input-form"
+              type="text"
+              name="telephone"
+              id="telephone"
+              value={customer.telephone}
+              placeholder="Telefone"
             />
           </div>
         </fieldset>
         <fieldset>
           <div className="container-input">
             <label className="label-form">Veículos ultilizados</label>
-            <label htmlFor="car">
-              {" "}
-              <input
-                className="input-form-radio"
-                id="car"
-                name="vehicle"
-                type="checkbox"
-                value="car"
-              />{" "}
-              Carro
-            </label>
-
-            <label htmlFor="truck">
-              {" "}
-              <input
-                className="input-form-radio"
-                id="truck"
-                name="vehicle"
-                type="checkbox"
-                value="truck"
-              />
-              Caminhão
-            </label>
-            <label htmlFor="motorcycle">
-              {" "}
-              <input
-                className="input-form-radio"
-                id="motorcycle"
-                name="vehicle"
-                type="checkbox"
-                value="motorcycle"
-              />
-              Caminhão
-            </label>
+            {vehicles.map((vehicle, index) => {
+              return (
+                <label
+                  style={{
+                    color: checkIncludesVehicle(vehicle)
+                      ? "steelblue"
+                      : "black",
+                  }}
+                  key={index}
+                  htmlFor={vehicle.id}
+                >
+                  {" "}
+                  <input
+                    onChange={handlerChangeCheckBox}
+                    checked={checkIncludesVehicle(vehicle)}
+                    disabled={denyEdition}
+                    className="input-form-checkbox"
+                    id={vehicle.id}
+                    name={vehicle.type}
+                    type="checkbox"
+                    value={vehicle.type}
+                  />{" "}
+                  {vehicle.type}
+                </label>
+              );
+            })}
           </div>
         </fieldset>
-        <div className="container-button">
+        <h3
+          className="message"
+          style={{ color: statusError ? "red" : "green" }}
+        >
+          {message}
+        </h3>
+        <div
+          style={{ display: denyEdition ? "none" : "flex" }}
+          className="container-button"
+        >
           <button type="submit" className="button-submit">
             Confirmar
+          </button>
+        </div>
+        <div
+          style={{
+            display: match === undefined ? "none" : "flex",
+          }}
+          className="container-button"
+        >
+          <button
+            onClick={deleteCustomer}
+            type="button"
+            className="button-delete"
+          >
+            Exluir
           </button>
         </div>
       </form>

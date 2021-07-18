@@ -9,9 +9,13 @@
     transform: translateY(-20px);
 }
 
+.message {
+    text-align: center;
+}
+
 form {
     width: 550px;
-    background-color: white;
+    background-color: rgb(197, 189, 189);
     border-radius: 10px;
     border:solid 1px rgb(2, 120, 255);
     margin-bottom: 30px;
@@ -53,6 +57,11 @@ fieldset {
 .input-form-radio {
     margin-left: 10px;
 }
+.input-form-checkbox {
+    margin-bottom: 10px;
+   
+}
+
 
 .button-submit {
   width: 60%;
@@ -63,10 +72,44 @@ fieldset {
   font-size: larger;
   font-weight: bold;
   border-radius: 5px;
+  cursor: pointer;
+  border:solid black 1px
+}
+
+.button-delete {
+    width: 60%;
+    margin: 10px;
+    border:none;
+    background-color: rgb(180, 41, 16);
+    padding: 10px 5px 10px 5px;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    border:solid black 1px
+}
+
+#type  {
+    color:black;
+    
+}
+
+
+
+
+#cep {
+    width: 100%;
 }
 
 .button-submit:hover {
     background-color: rgb(127, 161, 189);
+    cursor: pointer;
+    border:solid white 1px
+}
+
+.button-delete:hover {
+    background-color: rgb(190, 123, 111);
+    border:solid white 1px;
     cursor: pointer;
 }
 
@@ -93,6 +136,13 @@ fieldset {
 @media(max-width:600px) {
     .container-input {
         width: 95%;
+    }
+
+    .button-delete {
+        width: 100%;
+    }
+    .button-submit {
+        width: 100%;
     }
 
     .input-form-radio  {

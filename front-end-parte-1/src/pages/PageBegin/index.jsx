@@ -1,32 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import context from "../../Provider/context";
 import Client from "../../components/Client";
+import Loading from "../../components/Loading";
 import "./style.css";
-import mock from "../../fileMock";
+import { requestAllCustomers } from "../../api/customersApi";
 
 function PageBegin() {
-  const [customers, setCustomers] = useState([]);
+  const { setCustomers, customers, search, isLoading, setIsLoading } =
+    useContext(context);
+
+  const [messgeError, setMessageError] = useState("");
 
   useEffect(() => {
-    setCustomers(mock);
-  }, []);
+    if (search.length === 0) {
+      setIsLoading(true);
+      requestAllCustomers()
+        .then((response) => {
+          setCustomers(response);
+        })
+        .catch((error) => {
+          setMessageError(`${error.message}`);
+        });
+      setIsLoading(false);
+    }
+  }, [setCustomers, customers, search, setIsLoading]);
 
   return (
     <section className="main-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody className="table-body">
-          {customers.map((customer, index) => (
-            <Client customer={customer} key={index} />
-          ))}
-        </tbody>
-      </table>
+      {isLoading ? (
+        <Loading />
+      ) : messgeError !== "" ? (
+        <h1>{messgeError}</h1>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Tipo</th>
+              <th>Detalhes</th>
+              <th>Editar/Excluir</th>
+            </tr>
+          </thead>
+          <tbody className="table-body">
+            {customers.map((customer, index) => (
+              <Client customer={customer} key={index} />
+            ))}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 }

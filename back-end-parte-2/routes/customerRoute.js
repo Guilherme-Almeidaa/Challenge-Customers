@@ -13,5 +13,6 @@ route.post('/register',
 route.put('/update/:id',
     checkFieldsIsEmptyMiddleware,
     customersController.update);
+route.delete('/delete/:id', customersController.deleteCustomer);
 
 module.exports = route;

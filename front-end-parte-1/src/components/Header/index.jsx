@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { requestFindByName } from "../../api/customersApi";
 import logo from "../../images/LogLife-Logo.jpeg";
 import searchIcon from "../../images/search-icon.png";
+import context from "../../Provider/context";
 import "./style.css";
 
 function Header() {
   const [active, setStatus] = useState(false);
+  const { setCustomers, search, setSearch, isLoading, setIsLoading } =
+    useContext(context);
+
+  useEffect(() => {
+    setIsLoading(true);
+    requestFindByName(search).then((response) => {
+      setCustomers(response);
+    });
+    setIsLoading(false);
+  }, [search, setCustomers, isLoading, setIsLoading]);
 
   return (
     <header className="header">
@@ -25,6 +37,8 @@ function Header() {
       <img className="logo" src={logo} alt="logo" />
       <div className="search-container">
         <input
+          value={search}
+          onChange={({ target }) => setSearch(target.value)}
           className="search-input"
           type="text"
           placeholder="Pesquisa pelo nome"

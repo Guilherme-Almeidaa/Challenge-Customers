@@ -34,6 +34,7 @@ const findById = async (req, res) => {
 const create = async (req, res) => {
     try {
         const { vehiclesId } = req.body;
+        console.log(req.body)
         const result = await customerService.create(req.body, vehiclesId);
         res.status(201);
         return res.json(result);
@@ -54,7 +55,7 @@ const update = async (req, res) => {
             res.status(statusCodeMessages.UserNotFound.statusCode);
             return res.json(statusCodeMessages.UserNotFound.errorMessage);
         }
-        res.status(200);
+        res.status(201);
         return res.json(result);
     } catch (error) {
         console.log(error.message);
@@ -78,10 +79,28 @@ const findByName = async (req, res) => {
         });
     }
 }
+
+const deleteCustomer = async (req, res) => {
+    try {
+        const result = await customerService.deleteCustomer(req.params.id);
+        if (!result) {
+            res.status(statusCodeMessages.UserNotFound.statusCode);
+            return res.json(statusCodeMessages.UserNotFound.errorMessage);
+        }
+        return res.status(204).end();
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({
+            message: error.message,
+        });
+    }
+}
+
 module.exports = {
     getAll,
     findById,
     create,
     update,
     findByName,
+    deleteCustomer,
 }

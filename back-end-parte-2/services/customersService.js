@@ -58,10 +58,18 @@ const findByName = async (name) => {
     return result;
 }
 
+const deleteCustomer = async (id) => {
+    const checkExistsCustomer = await findById(id);
+    if (!checkExistsCustomer) return null;
+    await Customer.destroy({ where: { id } });
+    return true;
+}
+
 module.exports = {
     getAll,
     findById,
     create,
     update,
     findByName,
+    deleteCustomer,
 }

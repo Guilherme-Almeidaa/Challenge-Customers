@@ -4,6 +4,8 @@ import Header from './components/Header';
 import PageBegin from './pages/PageBegin';
 import PageRegisterCustomer from './pages/PageRegisterCustomer';
 import Provider from './Provider/Provider';
+import PageViewCustomer from './pages/PageViewCustomer';
+import PageEditCustomer from './pages/PageEditCustomer';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={PageBegin} />
           <Route path="/register" component={PageRegisterCustomer} />
+          <Route path="/customer/edit/:id" render={(props) => <PageEditCustomer {...props} />} />
+          <Route path="/customer/:id" render={(props) => <PageViewCustomer {...props} />} />
         </Switch>
       </BrowserRouter>
     </Provider>
