@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function Client({ customer }) {
+function Client({ customer, deleteCustomer }) {
   return (
     <tr>
       <td>
@@ -29,8 +29,16 @@ function Client({ customer }) {
       </td>
       <td>
         <Link className="link-btn" to={`/customer/edit/${customer.id}`}>
-          <button className="button-edit">Editar/Excluir</button>
+          <button className="button-edit">Editar</button>
         </Link>
+      </td>
+      <td>
+        <button
+          onClick={() => deleteCustomer(customer.id)}
+          className="button-delete"
+        >
+          Excluir
+        </button>
       </td>
     </tr>
   );

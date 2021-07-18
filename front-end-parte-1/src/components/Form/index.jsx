@@ -3,7 +3,7 @@ import context from "../../Provider/context";
 import states from "../../utilities/states";
 import "./style.css";
 
-function Form({ handlerSubmit, match, deleteCustomer }) {
+function Form({ handlerSubmit }) {
   const {
     customer,
     setCustomer,
@@ -34,8 +34,6 @@ function Form({ handlerSubmit, match, deleteCustomer }) {
       });
     }
   };
-
-  console.log(match);
 
   const checkIncludesVehicle = (vehicle) => {
     return customer.vehicle.map((item) => item.id).includes(Number(vehicle.id));
@@ -393,20 +391,6 @@ function Form({ handlerSubmit, match, deleteCustomer }) {
         >
           <button type="submit" className="button-submit">
             Confirmar
-          </button>
-        </div>
-        <div
-          style={{
-            display: match === undefined ? "none" : "flex",
-          }}
-          className="container-button"
-        >
-          <button
-            onClick={deleteCustomer}
-            type="button"
-            className="button-delete"
-          >
-            Exluir
           </button>
         </div>
       </form>

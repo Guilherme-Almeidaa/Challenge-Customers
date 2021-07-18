@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+
 import {
   requestCustomerById,
-  requestDeleteCustomer,
   requestUpdateCustomer,
 } from "../../api/customersApi";
 import Form from "../../components/Form";
@@ -20,7 +19,7 @@ function PageEditCustomer({ match }) {
     isLoading,
     setIsLoading,
   } = useContext(context);
-  const history = useHistory();
+
   useEffect(() => {
     setIsLoading(true);
     setDenyEdtion(false);
@@ -31,17 +30,6 @@ function PageEditCustomer({ match }) {
     });
   }, [id, setCustomer, setDenyEdtion, setMessage, setIsLoading]);
 
-  const deleteCustomer = () => {
-    const responseUser = window.confirm(
-      "Tem certeza que deseja exluir o cliente?"
-    );
-    if (responseUser) {
-      requestDeleteCustomer(id).then((_response) => {
-        window.alert("Cliente Excluído");
-        history.push("/");
-      });
-    }
-  };
   const handlerSubmit = (e) => {
     e.preventDefault();
     const vehicles = customer.vehicle.map((item) => item.id);
@@ -62,11 +50,7 @@ function PageEditCustomer({ match }) {
       {isLoading ? (
         <Loading />
       ) : (
-        <Form
-          handlerSubmit={handlerSubmit}
-          match={match}
-          deleteCustomer={deleteCustomer}
-        />
+        <Form handlerSubmit={handlerSubmit} match={match} />
       )}
     </section>
   );

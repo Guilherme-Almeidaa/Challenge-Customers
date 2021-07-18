@@ -76,18 +76,7 @@ fieldset {
   border:solid black 1px
 }
 
-.button-delete {
-    width: 60%;
-    margin: 10px;
-    border:none;
-    background-color: rgb(180, 41, 16);
-    padding: 10px 5px 10px 5px;
-    font-size: larger;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    border:solid black 1px
-}
+
 
 #type  {
     color:black;
@@ -107,11 +96,7 @@ fieldset {
     border:solid white 1px
 }
 
-.button-delete:hover {
-    background-color: rgb(190, 123, 111);
-    border:solid white 1px;
-    cursor: pointer;
-}
+
 
 .input-form {
     height: 30px;
@@ -138,9 +123,7 @@ fieldset {
         width: 95%;
     }
 
-    .button-delete {
-        width: 100%;
-    }
+    
     .button-submit {
         width: 100%;
     }

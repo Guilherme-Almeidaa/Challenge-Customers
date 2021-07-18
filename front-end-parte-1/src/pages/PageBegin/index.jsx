@@ -3,7 +3,10 @@ import context from "../../Provider/context";
 import Client from "../../components/Client";
 import Loading from "../../components/Loading";
 import "./style.css";
-import { requestAllCustomers } from "../../api/customersApi";
+import {
+  requestAllCustomers,
+  requestDeleteCustomer,
+} from "../../api/customersApi";
 
 function PageBegin() {
   const { setCustomers, customers, search, isLoading, setIsLoading } =
@@ -25,6 +28,17 @@ function PageBegin() {
     }
   }, [setCustomers, customers, search, setIsLoading]);
 
+  const deleteCustomer = (id) => {
+    const responseUser = window.confirm(
+      "Tem certeza que deseja exluir o cliente?"
+    );
+    if (responseUser) {
+      requestDeleteCustomer(id).then((_response) => {
+        window.alert("Cliente Excluído");
+      });
+    }
+  };
+
   return (
     <section className="main-container">
       {isLoading ? (
@@ -40,12 +54,17 @@ function PageBegin() {
               <th>Sobrenome</th>
               <th>Tipo</th>
               <th>Detalhes</th>
-              <th>Editar/Excluir</th>
+              <th>Editar</th>
+              <th>Excluir</th>
             </tr>
           </thead>
           <tbody className="table-body">
             {customers.map((customer, index) => (
-              <Client customer={customer} key={index} />
+              <Client
+                deleteCustomer={deleteCustomer}
+                customer={customer}
+                key={index}
+              />
             ))}
           </tbody>
         </table>

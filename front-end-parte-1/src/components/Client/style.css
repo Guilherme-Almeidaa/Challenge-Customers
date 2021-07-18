@@ -36,6 +36,24 @@
     border:solid white 1px;
 }
 
+.button-delete {
+    width: 60%;
+    margin: auto;
+    border:solid black 1px;
+    background-color: rgb(245, 34, 19);
+    padding: 3px 3px 3px 3px;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-delete:hover {
+    background-color: rgb(219, 71, 61);
+    
+    border:solid white 1px;
+}
+
 @media(max-width:600px) {
    
 
@@ -64,12 +82,16 @@
         width: 100%;
     }
 
-    .button-edit {
+    .button-edit  {
         width: 100%;
       
     }
-
+    
     .button-details {
+        width: 100%;
+    }
+
+    .button-delete {
         width: 100%;
     }
 }
