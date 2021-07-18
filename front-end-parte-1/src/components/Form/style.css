@@ -38,6 +38,14 @@ fieldset {
     width: 70%;
 }
 
+.container-input-tel {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: flex-end;
+}
+
 .container-radio {
     margin:auto;
     display: flex;
@@ -78,13 +86,9 @@ fieldset {
 
 
 
-#type  {
+#type ,#state  {
     color:black;
-    
 }
-
-
-
 
 #cep {
     width: 100%;

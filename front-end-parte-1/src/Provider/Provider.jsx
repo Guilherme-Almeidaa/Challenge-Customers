@@ -12,7 +12,7 @@ function Provider({ children }) {
     email: "",
     telephone: "",
     service_hours: "",
-    service_date: "yyyy-mm-dd",
+    service_date: "",
     cep: "",
     road: "",
     number: "",
@@ -31,7 +31,7 @@ function Provider({ children }) {
 
   const formatDate = (date) => {
     const dateFormated = new Date(date);
-    const day = dateFormated.getDate();
+    const day = dateFormated.getDate() + 1;
     const dayFormated = day < 10 ? `0${day}` : day;
     const month = dateFormated.getMonth() + 1;
     const monthFormated = month < 10 ? `0${month}` : month;

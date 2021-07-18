@@ -1,0 +1,412 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "swagger": "2.0",
+    "title": "Customers",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/customers/": {
+      "get": {
+        "tags": ["Clientes"],
+        "description": "",
+        "summary":"Retornar todos os Clientes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema":{
+                "$ref":"#/components/schemas/Clientes"
+            }
+            },
+          "500": {
+            "description": "Internal Server Error"
+          }
+         
+        }
+      }
+    },
+    "/customers/search": {
+      "get": {
+        "tags": ["Clientes"],
+        "summary":"Buscar cliente por nome",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "example":"Gui"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref":"#/components/schemas/ClienteRetorno"
+            }
+              
+             
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+         
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "tags": ["Clientes"],
+        "summary":"Buscar cliente por id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example":"1"
+          }
+        
+        ],
+      
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref":"#/components/schemas/ClienteRetorno"
+            }
+          },
+          "404": {
+            "description": "customer not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+          
+        }
+      }
+    },
+    "/customers/register": {
+      "post": {
+        "tags": ["Clientes"],
+        "description": "",
+          "summary":"Cadastrar cliente",
+         "parameters": [
+          {
+            "name": "Customer",
+            "in": "body",
+            "schema": {
+              "$ref":"#/components/schemas/Cliente"
+            }
+          }
+        ],
+    
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref":"#/components/schemas/ClienteRetorno"
+            }
+          },
+          "400": {
+            "description": "the field cannot be empty"
+          },
+        
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customers/update/{id}": {
+      "put": {
+        "tags": ["Clientes"],
+        "summary":"Atualizar cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example":"1"
+          },
+          {
+            "name": "Cliente",
+            "in": "body",
+            "schema": {
+              "$ref":"#/components/schemas/Cliente"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+             "schema": {
+              "$ref":"#/components/schemas/ClienteRetorno"
+            }
+          },
+          "404": {
+            "description": "customer not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+
+        }
+      }
+    },
+    "/customers/delete/{id}": {
+      "delete": {
+        "tags": ["Clientes"],
+        "summary":"Deletar cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example":"1"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "customer not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vehicles/": {
+      "get": {
+        "tags": ["Veículos"],
+        "summary":"Retornar todos os Veículos",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref":"#/components/schemas/Veiculos"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas":{
+      "Cliente":{
+        "type":"object",
+        "properties":{
+          "name": {
+            "type": "string",
+            "example": "Guilherme"
+          },
+          "lastName_corporateName": {
+            "type": "string",
+            "example": "Almeida"
+          },
+          "type": {
+            "type": "string",
+            "example": "Pessoa Física"
+          },
+          "status": {
+            "type": "string",
+            "example": "false"
+          },
+          "cpf_cnpj": {
+            "type": "string",
+            "example": "123-123-123-10"
+          },
+          "email": {
+            "type": "string",
+            "example": "gui.s.a@live.com"
+          },
+          "telephone": {
+            "type": "string",
+            "example": "235343543"
+          },
+          "service_hours": {
+            "type": "string",
+            "example": "20:20"
+          },
+          "service_date": {
+            "type": "string",
+            "example": "2021-06-07"
+          },
+          "cep": {
+            "type": "string",
+            "example": "asdad"
+          },
+          "road": {
+            "type": "string",
+            "example": "vinte quetro de março"
+          },
+          "number": {
+            "type": "string",
+            "example": "242"
+          },
+          "city": {
+            "type": "string",
+            "example": "São Paulo"
+          },
+          "state": {
+            "type": "string",
+            "example": "São Paulo"
+          },
+          "vehiclesId": {
+            "type": "array",
+            "example": [
+              1
+            ],
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "Clientes":{
+        "type":"array",
+        "example":[
+          {
+            "id": 1,
+            "name": "Guilherme",
+            "lastName_corporateName": "Almeida",
+            "type": "Pessoa Física"
+          },
+          {
+            "id": 2,
+            "name": "Pedro",
+            "lastName_corporateName": "José",
+            "type": "Pessoa Física"
+          }
+        ]
+    },
+    "Veiculos":{
+      "type":"array",
+      "example":[
+     
+          {
+            "id":"1",
+            "type":"Carro"
+          },
+          {
+            "id": "2",
+            "type": "Caminhão"
+          },
+          {
+            "id": "3",
+            "type": "Moto"
+          }
+          
+    
+      ],
+      "items": {
+        "type": "object"
+      }
+  },
+  "ClienteRetorno":{
+    "type":"object",
+    "properties":{
+      "name": {
+        "type": "string",
+        "example": "Guilherme"
+      },
+      "lastName_corporateName": {
+        "type": "string",
+        "example": "Almeida"
+      },
+      "type": {
+        "type": "string",
+        "example": "Pessoa Física"
+      },
+      "status": {
+        "type": "string",
+        "example": "false"
+      },
+      "cpf_cnpj": {
+        "type": "string",
+        "example": "123-123-123-10"
+      },
+      "email": {
+        "type": "string",
+        "example": "gui.s.a@live.com"
+      },
+      "telephone": {
+        "type": "string",
+        "example": "235343543"
+      },
+      "service_hours": {
+        "type": "string",
+        "example": "20:20"
+      },
+      "service_date": {
+        "type": "string",
+        "example": "2021-06-07"
+      },
+      "cep": {
+        "type": "string",
+        "example": "32.354-231"
+      },
+      "road": {
+        "type": "string",
+        "example": "vinte quetro de março"
+      },
+      "number": {
+        "type": "string",
+        "example": "242"
+      },
+      "city": {
+        "type": "string",
+        "example": "Betim"
+      },
+      "state": {
+        "type": "string",
+        "example": "Minas Gerais"
+      },
+      "createdAt":{
+        "type":"date",
+        "example":"2021-06-07"
+      },
+      "updatedAt":{
+        "type":"date",
+        "example":"2021-06-07"
+      },
+      "vehiclesId": {
+        "type": "array",
+        "example": [
+          {"id":"1",
+          "type":"Carro"}
+        ],
+        "items": {
+          "type": "object"
+        }
+      }
+     
+    }
+  }
+  }
+  }
+}

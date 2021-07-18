@@ -35,7 +35,7 @@ function PageRegisterCustomer() {
   const handlerSubmit = (e) => {
     e.preventDefault();
     const vehicles = customer.vehicle.map((item) => item.id);
-
+    if (vehicles.length === 0) return window.alert("Selecione um veículo");
     requestCreateCustomer({ ...customer, vehiclesId: vehicles })
       .then((_response) => {
         setMessage("Cliente cadastrado com sucesso");

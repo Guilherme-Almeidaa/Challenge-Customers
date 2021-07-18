@@ -14,9 +14,14 @@ function Form({ handlerSubmit }) {
     message,
   } = useContext(context);
 
+  console.log(customer.service_date);
   const handlerChange = ({ target }) => {
     const name = target.name;
-    setCustomer({ ...customer, [name]: target.value });
+    if (name === "service_date") {
+      setCustomer({ ...customer, [name]: formatDate(target.value) });
+    } else {
+      setCustomer({ ...customer, [name]: target.value });
+    }
   };
 
   const handlerChangeCheckBox = ({ target }) => {
@@ -38,6 +43,23 @@ function Form({ handlerSubmit }) {
   const checkIncludesVehicle = (vehicle) => {
     return customer.vehicle.map((item) => item.id).includes(Number(vehicle.id));
   };
+
+  const mockVehicles = [
+    {
+      id: 1,
+      type: "Carro",
+    },
+    {
+      id: 2,
+      type: "Caminhão",
+    },
+    {
+      id: 3,
+      type: "Moto",
+    },
+  ];
+
+  const vehiclesSelect = vehicles.length !== 0 ? mockVehicles : vehicles;
 
   return (
     <section className="container-form">
@@ -274,7 +296,7 @@ function Form({ handlerSubmit }) {
             </label>
             <select
               onChange={handlerChange}
-              readOnly={denyEdition}
+              disabled={denyEdition}
               value={customer.state}
               required
               className="select-form"
@@ -332,9 +354,9 @@ function Form({ handlerSubmit }) {
               placeholder="Cidade"
             />
           </div>
-          <div className="container-input">
+          <div className="container-input-tel">
             <label className="label-form" htmlFor="telephone">
-              Telefone
+              Telefone do Cliente
             </label>
             <input
               onChange={handlerChange}
@@ -351,7 +373,7 @@ function Form({ handlerSubmit }) {
         <fieldset>
           <div className="container-input">
             <label className="label-form">Veículos ultilizados</label>
-            {vehicles.map((vehicle, index) => {
+            {vehiclesSelect.map((vehicle, index) => {
               return (
                 <label
                   style={{

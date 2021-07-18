@@ -34,7 +34,6 @@ const findById = async (req, res) => {
 const create = async (req, res) => {
     try {
         const { vehiclesId } = req.body;
-        console.log(req.body)
         const result = await customerService.create(req.body, vehiclesId);
         res.status(201);
         return res.json(result);

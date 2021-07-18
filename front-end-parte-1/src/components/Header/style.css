@@ -97,6 +97,9 @@
     padding: 10px 20px 10px 20px;
 }
 
+.container-menu-mobile {
+     display: none;
+}
 
 .item-menu .link:hover {
     background-color: #333;
@@ -155,13 +158,14 @@ border-radius: 100px;
 }
 
 
+
 .icon-search {
     width: 35px;
     height: 35px;
     float:right;
 }
 
-@media (max-width:600px) {
+@media (max-width:720px) {
     .container-menu-hamburguer {
         display: block;
     }
@@ -169,7 +173,10 @@ border-radius: 100px;
     .logo,.menu {
         display: none;
     }
-   
+
+    .container-menu-mobile {
+        display:block;
+    }
 
     .item-menu .link {
         border-bottom: 2px solid white;
@@ -205,7 +212,7 @@ border-radius: 100px;
 
     .search-container {
         margin: 2px;
-       
+        float: left;
     }
 
     @keyframes slide {
