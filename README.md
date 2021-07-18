@@ -17,6 +17,6 @@
     <h4> <code>npm start</code></h4>
     <h1>Documentação da API </h1>
     <h4>Para acessar a documentação.</h4>
-    <h4>Acesse: <code>http://localhost:3001/doc</code></h4>
+    <h4>Acesse: <a>http://localhost:3001/doc</a></h4>
   </div>
 </body>
