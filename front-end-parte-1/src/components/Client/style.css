@@ -61,15 +61,16 @@
     
     
     .span-td {
-        background-color: rgb(123, 49, 175);
+        background-color: rgb(26, 72, 94);
         padding: 10px;
         border:solid 1px black;
         border-radius: 10px;
+        
     }
 
     .td-p {
         border:solid 1px black;
-            background-color: steelblue;
+            background-color: rgb(43, 80, 114);
             padding: 10px;
             border-radius: 10px;
            width: 100%;

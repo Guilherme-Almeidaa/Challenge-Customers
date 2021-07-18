@@ -250,7 +250,7 @@
           },
           "service_hours": {
             "type": "string",
-            "example": "20:20"
+            "example": "20:30"
           },
           "service_date": {
             "type": "string",
@@ -360,7 +360,7 @@
       },
       "service_hours": {
         "type": "string",
-        "example": "20:20"
+        "example": "20:30"
       },
       "service_date": {
         "type": "string",
