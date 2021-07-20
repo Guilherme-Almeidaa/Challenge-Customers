@@ -5,6 +5,11 @@ const conflict = 409;
 const badRequest = 400;
 const internalError = 500;
 const noContent = 204;
+const not_autorized = 401;
+
+const SECRET = 'ORatoRoeuOReiDeRoma';
+
+
 
 const UserNotFound = {
   statusCode: notFound,
@@ -23,4 +28,6 @@ module.exports = {
   noContent,
   badRequest,
   conflict,
+  SECRET,
+  not_autorized,
 };
