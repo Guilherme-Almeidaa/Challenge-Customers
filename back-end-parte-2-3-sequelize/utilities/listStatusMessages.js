@@ -10,7 +10,7 @@ const UserNotFound = {
   statusCode: notFound,
   errorMessage: {
     error: {
-      message: 'customer not found',
+      message: 'user not found',
     },
   },
 };

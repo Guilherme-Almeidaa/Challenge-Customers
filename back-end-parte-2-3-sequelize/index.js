@@ -11,11 +11,13 @@ const swaggerFile = require('./swagger-output.json');
 const app = express();
 app.use(cors());
 
+const usersRoute = require('./routes/userRoute')
 const customersRoute = require('./routes/customerRoute');
 const vehiclesRoute = require('./routes/vehiclesRoute');
 app.use(express.json());
 app.use('/customers', customersRoute);
 app.use('/vehicles', vehiclesRoute);
+app.use('/users', usersRoute);
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 const PORT = process.env.PORT || 3001;
