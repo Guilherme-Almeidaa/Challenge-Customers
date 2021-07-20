@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import Header from "../../components/Header";
 import context from "../../Provider/context";
 import Client from "../../components/Client";
 import Loading from "../../components/Loading";
@@ -14,10 +15,12 @@ function PageBegin() {
 
   const [messgeError, setMessageError] = useState("");
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     if (search.length === 0) {
       setIsLoading(true);
-      requestAllCustomers()
+      requestAllCustomers(token)
         .then((response) => {
           setCustomers(response);
         })
@@ -26,7 +29,7 @@ function PageBegin() {
         });
       setIsLoading(false);
     }
-  }, [setCustomers, customers, search, setIsLoading]);
+  }, [setCustomers, customers, search, setIsLoading, token]);
 
   const deleteCustomer = (id) => {
     const responseUser = window.confirm(
@@ -40,36 +43,39 @@ function PageBegin() {
   };
 
   return (
-    <section className="main-container">
-      {isLoading ? (
-        <Loading />
-      ) : messgeError !== "" ? (
-        <h1>{messgeError}</h1>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nome</th>
-              <th>Sobrenome</th>
-              <th>Tipo</th>
-              <th>Detalhes</th>
-              <th>Editar</th>
-              <th>Excluir</th>
-            </tr>
-          </thead>
-          <tbody className="table-body">
-            {customers.map((customer, index) => (
-              <Client
-                deleteCustomer={deleteCustomer}
-                customer={customer}
-                key={index}
-              />
-            ))}
-          </tbody>
-        </table>
-      )}
-    </section>
+    <div>
+      <Header />
+      <section className="main-container">
+        {isLoading ? (
+          <Loading />
+        ) : messgeError !== "" ? (
+          <h1>{messgeError}</h1>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Tipo</th>
+                <th>Detalhes</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+              </tr>
+            </thead>
+            <tbody className="table-body">
+              {customers.map((customer, index) => (
+                <Client
+                  deleteCustomer={deleteCustomer}
+                  customer={customer}
+                  key={index}
+                />
+              ))}
+            </tbody>
+          </table>
+        )}
+      </section>
+    </div>
   );
 }
 

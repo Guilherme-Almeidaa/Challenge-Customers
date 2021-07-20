@@ -14,7 +14,6 @@ function Form({ handlerSubmit }) {
     message,
   } = useContext(context);
 
-  console.log(customer.service_date);
   const handlerChange = ({ target }) => {
     const name = target.name;
     if (name === "service_date") {
@@ -63,7 +62,7 @@ function Form({ handlerSubmit }) {
 
   return (
     <section className="container-form">
-      <form onSubmit={handlerSubmit}>
+      <form className="form-customer" onSubmit={handlerSubmit}>
         <fieldset>
           <div className="container-input">
             <label className="label-form" htmlFor="type">

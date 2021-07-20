@@ -165,6 +165,27 @@ border-radius: 100px;
     float:right;
 }
 
+
+.button-exit {
+    margin-top:10px;
+    display: block;
+    background-color: rgb(197, 64, 64);
+    border-radius: 10px;
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    border:none;
+    font-size: large;
+}
+
+.link-exit {
+    text-decoration: none;
+}
+.button-exit:hover {
+    background-color: rgb(199, 101, 101);
+    cursor: pointer;
+}
+
 @media (max-width:720px) {
     .container-menu-hamburguer {
         display: block;
@@ -178,7 +199,7 @@ border-radius: 100px;
         display:block;
     }
 
-    .item-menu .link {
+    .item-menu .link  {
         border-bottom: 2px solid white;
         display: block;
         background-color: rgb(54, 52, 52);
@@ -188,6 +209,10 @@ border-radius: 100px;
         text-decoration: none;
         padding: 10px 20px 10px 20px;
     } 
+
+    .button-exit {
+        width: 100%;
+    }
 
     
     .menu-mobile {
@@ -213,8 +238,13 @@ border-radius: 100px;
     .search-container {
         margin: 2px;
         float: left;
+        
     }
 
+    
+
+
+    
     @keyframes slide {
         from {
          opacity: 0;

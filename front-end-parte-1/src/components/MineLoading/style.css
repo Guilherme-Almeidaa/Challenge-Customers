@@ -1,0 +1,17 @@
+.mine-loading {
+    width: 30px;
+    height: 30px;
+    border:7px solid;
+    border-radius: 50%;
+    border-top-color: transparent;
+    margin:0 auto;
+    color: rgb(184, 102, 102);
+    animation: load 0.6s infinite linear;
+    
+}
+
+@keyframes load {
+    to {
+        transform: rotate(360deg);
+    }
+}

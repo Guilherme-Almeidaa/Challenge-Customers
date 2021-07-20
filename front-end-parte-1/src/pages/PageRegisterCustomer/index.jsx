@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Header from "../../components/Header";
 import context from "../../Provider/context";
 import Form from "../../components/Form";
 import "./style.css";
@@ -32,11 +33,13 @@ function PageRegisterCustomer() {
     vehicle: [],
   });
 
+  const token = localStorage.getItem("token");
+
   const handlerSubmit = (e) => {
     e.preventDefault();
     const vehicles = customer.vehicle.map((item) => item.id);
     if (vehicles.length === 0) return window.alert("Selecione um veículo");
-    requestCreateCustomer({ ...customer, vehiclesId: vehicles })
+    requestCreateCustomer({ ...customer, vehiclesId: vehicles }, token)
       .then((_response) => {
         setMessage("Cliente cadastrado com sucesso");
         setStatusError(false);
@@ -48,6 +51,10 @@ function PageRegisterCustomer() {
   };
 
   useEffect(() => {
+    setMessage("");
+  }, [setMessage]);
+
+  useEffect(() => {
     setDenyEdtion(false);
     setMessage("");
     setCustomer(initialCustomer);
@@ -55,12 +62,15 @@ function PageRegisterCustomer() {
 
   return (
     <div>
-      <h1>Formulário de Castramento</h1>
-      <Form
-        handlerSubmit={handlerSubmit}
-        message={message}
-        statusError={statusError}
-      />
+      <Header />
+      <section>
+        <h1>Formulário de Castramento</h1>
+        <Form
+          handlerSubmit={handlerSubmit}
+          message={message}
+          statusError={statusError}
+        />
+      </section>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-
+import Header from "../../components/Header";
 import {
   requestCustomerById,
   requestUpdateCustomer,
@@ -20,21 +20,27 @@ function PageEditCustomer({ match }) {
     setIsLoading,
   } = useContext(context);
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     setIsLoading(true);
     setDenyEdtion(false);
     setMessage("");
-    requestCustomerById(id).then((response) => {
+    requestCustomerById(id, token).then((response) => {
       setCustomer(response);
       setIsLoading(false);
     });
-  }, [id, setCustomer, setDenyEdtion, setMessage, setIsLoading]);
+  }, [id, setCustomer, setDenyEdtion, setMessage, setIsLoading, token]);
+
+  useEffect(() => {
+    setMessage("");
+  }, [setMessage]);
 
   const handlerSubmit = (e) => {
     e.preventDefault();
     const vehicles = customer.vehicle.map((item) => item.id);
 
-    requestUpdateCustomer({ ...customer, vehiclesId: vehicles }, id)
+    requestUpdateCustomer({ ...customer, vehiclesId: vehicles }, id, token)
       .then((_response) => {
         setMessage("Cliente Atualizado com sucesso");
         setStatusError(false);
@@ -46,13 +52,16 @@ function PageEditCustomer({ match }) {
   };
 
   return (
-    <section>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <Form handlerSubmit={handlerSubmit} match={match} />
-      )}
-    </section>
+    <div>
+      <Header />
+      <section>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Form handlerSubmit={handlerSubmit} match={match} />
+        )}
+      </section>
+    </div>
   );
 }
 

@@ -13,13 +13,14 @@
     text-align: center;
 }
 
-form {
+.form-customer {
     width: 550px;
     background-color: rgb(197, 189, 189);
     border-radius: 10px;
     border:solid 1px rgb(2, 120, 255);
     margin-bottom: 30px;
     font-weight: bold;
+    
 }
 
 fieldset {
@@ -145,7 +146,7 @@ fieldset {
         width: 60%;
     }
 
-    form {
+    .form-customer {
         width: 100%;
     }
     

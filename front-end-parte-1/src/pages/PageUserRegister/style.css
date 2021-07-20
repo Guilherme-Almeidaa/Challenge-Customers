@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.main-container-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg,rgb(56, 56, 119),rgb(184, 102, 102));
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-fill-mode:forwards;
+    transform: translateY(-20px);
+    height: 100%;
+    
+}
+
+.container-register {
+    font-family: "Poppins" ,sans-serif;
+    
+}
+
+
+.container-register {
+    background-color: white;
+    width: 350px;
+    max-width: 350px;
+    min-width:40vh;
+    padding:2rem;
+    box-shadow: 5px 5px 15px rgb(39, 38, 38);
+    border-radius: 8px;
+    
+}
+
+.title-register {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+    
+}
+
+.title-register::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 25px;
+    bottom:0px;
+    left: 0;
+    border-radius: 8px;
+    background:linear-gradient(45deg,rgb(56, 56, 119),rgb(184, 102, 102));
+}
+
+.container-input {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-register {
+ outline: none;
+ font-size: 0.9rem;
+ color:rgba(0,0,0,0.7);
+ border:none;
+}
+
+.input-register::placeholder {
+    color:rgba(0,0,0,0.5);
+}
+
+.form-register {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-register ,.button-register-link {
+    margin-top: 2rem;
+    padding: 0.4rem;
+    background:linear-gradient(to left,rgb(56, 56, 119),rgb(184, 102, 102));
+    border:none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bolder;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color:white;
+    letter-spacing: 0.9px;
+    
+}
+
+.button-register-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    background:linear-gradient(to left,rgb(37, 83, 69),rgrgb(231, 224, 224));
+}
+
+.button-register:hover , .button-register-link:hover {
+    letter-spacing: 2px;
+    background:linear-gradient(to right,rgb(56, 56, 119),rgb(184, 102, 102))
+}
+
+.underline::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -5px;
+  left:0;
+  background:rgba(0,0,0,0.2);
+  
+}
+
+.input-register:focus ~.underline::after {
+  transform: scaleX(1);
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -5px;
+    left:0;
+    background:linear-gradient(45deg,rgb(56, 56, 119),rgb(184, 102, 102));
+    transform: scaleX(0);
+    transition: all .3s ease-in-out;
+}
+
+.footer-register {
+   z-index: 1000;
+}
+
+
+@keyframes slide {
+    from {
+     opacity: 0;
+    }
+    to {
+     opacity: 1;
+     transform: translateY(0);
+    }
+}

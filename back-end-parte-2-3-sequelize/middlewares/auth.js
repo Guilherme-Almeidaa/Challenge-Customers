@@ -34,7 +34,7 @@ const auth = async (req, res, next) => {
         return next();
     } catch (error) {
         console.error(error.message)
-        res.status(codes.notProcess).json({
+        res.status(statusCodeMessages.internalError).json({
             error: {
                 message: error.message
             }

@@ -11,6 +11,10 @@ function Header() {
   const { setCustomers, search, setSearch, isLoading, setIsLoading } =
     useContext(context);
 
+  const exit = () => {
+    localStorage.setItem("token", "");
+  };
+
   useEffect(() => {
     setIsLoading(true);
     requestFindByName(search).then((response) => {
@@ -35,10 +39,9 @@ function Header() {
         </label>
       </div>
       <img className="logo" src={logo} alt="logo" />
-
       <ul className="menu">
         <li className="item-menu">
-          <Link to="/" className="link">
+          <Link to="/customers" className="link">
             Lista de Clientes
           </Link>{" "}
         </li>
@@ -47,6 +50,13 @@ function Header() {
             Adicionar Cliente
           </Link>{" "}
         </li>
+        <li className="item-menu">
+          <Link to="/" className="link-exit">
+            <button onClick={exit} className="button-exit">
+              sair
+            </button>{" "}
+          </Link>
+        </li>
       </ul>
       <div className="container-menu-mobile">
         <ul
@@ -54,13 +64,18 @@ function Header() {
           className="menu-mobile"
         >
           <li className="item-menu">
-            <Link to="/" className="link">
+            <Link to="/customers" className="link">
               Lista de Clientes
             </Link>{" "}
           </li>
           <li className="item-menu">
             <Link to="/register" className="link">
               Adicionar Cliente
+            </Link>{" "}
+          </li>
+          <li className="item-menu">
+            <Link to="/" className="link-exit">
+              <button className="button-exit">sair</button>{" "}
             </Link>{" "}
           </li>
         </ul>

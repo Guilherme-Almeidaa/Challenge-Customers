@@ -2,10 +2,13 @@ import axios from 'axios';
 
 const url = 'http://localhost:3001'
 
-export const requestAllCustomers = async () => {
+export const requestAllCustomers = async (token) => {
     const options = {
         method: 'GET',
-        url: `${url}/customers`
+        url: `${url}/customers`,
+        headers: {
+            Authorization: token
+        },
     };
 
     return axios.request(options).then(response => {
@@ -13,10 +16,15 @@ export const requestAllCustomers = async () => {
     })
 }
 
-export const requestCustomerById = async (id) => {
+export const requestCustomerById = async (id, token) => {
     const options = {
         method: 'GET',
-        url: `${url}/customers/${id}`
+        url: `${url}/customers/${id}`,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
+
     }
 
     return axios.request(options).then(response => {
@@ -24,10 +32,14 @@ export const requestCustomerById = async (id) => {
     })
 }
 
-export const requestGetAllVehicles = async () => {
+export const requestGetAllVehicles = async (token) => {
     const options = {
         method: 'GET',
-        url: `${url}/vehicles`
+        url: `${url}/vehicles`,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
     };
 
     return axios.request(options).then(response => {
@@ -35,11 +47,14 @@ export const requestGetAllVehicles = async () => {
     })
 }
 
-export const requestCreateCustomer = async (customer) => {
+export const requestCreateCustomer = async (customer, token) => {
     const options = {
         method: 'POST',
         url: `${url}/customers/register`,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
         data: customer,
     }
 
@@ -48,11 +63,14 @@ export const requestCreateCustomer = async (customer) => {
     })
 }
 
-export const requestUpdateCustomer = async (customer, id) => {
+export const requestUpdateCustomer = async (customer, id, token) => {
     const options = {
         method: 'PUT',
         url: `${url}/customers/update/${id}`,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
         data: customer,
     }
 
@@ -61,10 +79,14 @@ export const requestUpdateCustomer = async (customer, id) => {
     })
 }
 
-export const requestFindByName = async (name) => {
+export const requestFindByName = async (name, token) => {
     const options = {
         method: 'GET',
         url: `${url}/customers/search`,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
         params: { name: name },
     }
 
