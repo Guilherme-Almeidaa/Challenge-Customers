@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { userLogin } from "../../api/usersApi";
 import MineLoading from "../../components/MineLoading";
-
+import { isAuthenticated } from "../../services/checkAutendicate";
 import context from "../../Provider/context";
 import "./style.css";
 
@@ -23,7 +23,7 @@ function PageLogin() {
 
   useEffect(() => {
     setMessage("");
-  }, [setMessage, token]);
+  }, [setMessage]);
   const handlerSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -46,6 +46,10 @@ function PageLogin() {
         setIsLoading(false);
       });
   };
+
+  if (isAuthenticated(token)) {
+    return <Redirect to="/customers" />;
+  }
 
   return (
     <section className="main-container-login">

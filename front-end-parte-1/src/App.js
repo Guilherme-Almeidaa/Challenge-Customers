@@ -8,16 +8,14 @@ import PageEditCustomer from './pages/PageEditCustomer';
 import PageLogin from './pages/PageLogin';
 import PageUserRegister from './pages/PageUserRegister';
 import ProtectedRoute from './services/ProtectedRoute';
-import CheckLogged from './services/CheckLogged';
+
 
 function App() {
   return (
     <Provider>
       <BrowserRouter >
         <Switch>
-          <CheckLogged>
-            <Route exact path="/" component={PageLogin} />
-          </CheckLogged>
+          <Route exact path="/" component={PageLogin} />
           <Route path="/user/register" component={PageUserRegister} />
           <ProtectedRoute>
             <Route path="/customers" component={PageBegin} />
