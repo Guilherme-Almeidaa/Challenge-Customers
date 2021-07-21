@@ -33,7 +33,9 @@ function PageUserRegister() {
         })
         .catch((error) => {
           setStatusError(true);
-          const message = error.message || error.response.data.error.message;
+          const message = error.response
+          ? error.response.data.error.message
+          : error.message;
           setMessage(message);
           setIsLoading(false);
         });

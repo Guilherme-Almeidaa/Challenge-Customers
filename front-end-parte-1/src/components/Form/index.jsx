@@ -337,7 +337,7 @@ function Form({ handlerSubmit }) {
               placeholder="Cidade"
             />
           </div>
-          <div className="container-input">
+          <div className="container-input-date">
             <label className="label-form" htmlFor="date">
               Dia do atendimento
             </label>

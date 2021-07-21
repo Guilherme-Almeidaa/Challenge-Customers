@@ -3,9 +3,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { isAuthenticated } from './checkAutendicate';
 
-const token = localStorage.getItem('token');
 
 function ProtectedRoute({ children, ...rest }) {
+const token = localStorage.getItem('token');
 
 
     return (
