@@ -2,26 +2,28 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { isAuthenticated } from './checkAutendicate';
+import PageBegin from '../pages/PageBegin';
+
 
 const token = localStorage.getItem('token');
 
-function ProtectedRoute({ children, ...rest }) {
+function CheckLogged({ children, ...rest }) {
 
-
+    console.log(isAuthenticated(token))
     return (
         <Route
             {...rest}
-            render={() => (isAuthenticated(token) ? (
+            render={() => (isAuthenticated(token) === false ? (
                 <Switch>
                     {children}
                 </Switch>
-            ) : <Redirect to="/" />)}
+            ) : <PageBegin />)}
         />
     );
 }
 
-ProtectedRoute.propTypes = {
+CheckLogged.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default ProtectedRoute;
+export default CheckLogged;

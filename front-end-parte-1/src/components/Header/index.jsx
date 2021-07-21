@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { requestFindByName } from "../../api/customersApi";
-import logo from "../../images/LogLife-Logo.jpeg";
 import searchIcon from "../../images/search-icon.png";
 import context from "../../Provider/context";
 import "./style.css";
@@ -11,17 +10,19 @@ function Header() {
   const { setCustomers, search, setSearch, isLoading, setIsLoading } =
     useContext(context);
 
-  const exit = () => {
-    localStorage.setItem("token", "");
+  const logout = () => {
+    localStorage.removeItem("token");
   };
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     setIsLoading(true);
-    requestFindByName(search).then((response) => {
+    requestFindByName(search, token).then((response) => {
       setCustomers(response);
     });
     setIsLoading(false);
-  }, [search, setCustomers, isLoading, setIsLoading]);
+  }, [search, setCustomers, isLoading, setIsLoading, token]);
 
   return (
     <header className="header">
@@ -38,7 +39,7 @@ function Header() {
           <span></span>
         </label>
       </div>
-      <img className="logo" src={logo} alt="logo" />
+
       <ul className="menu">
         <li className="item-menu">
           <Link to="/customers" className="link">
@@ -52,7 +53,7 @@ function Header() {
         </li>
         <li className="item-menu">
           <Link to="/" className="link-exit">
-            <button onClick={exit} className="button-exit">
+            <button onClick={logout} className="button-exit">
               sair
             </button>{" "}
           </Link>
@@ -75,7 +76,9 @@ function Header() {
           </li>
           <li className="item-menu">
             <Link to="/" className="link-exit">
-              <button className="button-exit">sair</button>{" "}
+              <button onClick={logout} className="button-exit">
+                sair
+              </button>{" "}
             </Link>{" "}
           </li>
         </ul>

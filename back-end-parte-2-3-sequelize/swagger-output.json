@@ -18,6 +18,7 @@
     "/customers/": {
       "get": {
         "tags": ["Clientes"],
+        "security":[{"bearerAuth":[]}],
         "description": "",
         "summary":"Retornar todos os Clientes",
         "parameters": [],
@@ -38,6 +39,7 @@
     "/customers/search": {
       "get": {
         "tags": ["Clientes"],
+        "security":[{"bearerAuth":[]}],
         "summary":"Buscar cliente por nome",
         "description": "",
         "parameters": [
@@ -68,6 +70,7 @@
     "/customers/{id}": {
       "get": {
         "tags": ["Clientes"],
+        "security":[{"bearerAuth":[]}],
         "summary":"Buscar cliente por id",
         "description": "",
         "parameters": [
@@ -101,6 +104,7 @@
     "/customers/register": {
       "post": {
         "tags": ["Clientes"],
+        "security":[{"bearerAuth":[]}],
         "description": "",
           "summary":"Cadastrar cliente",
          "parameters": [
@@ -133,6 +137,7 @@
     "/customers/update/{id}": {
       "put": {
         "tags": ["Clientes"],
+        "security":[{"bearerAuth":[]}],
         "summary":"Atualizar cliente",
         "description": "",
         "parameters": [
@@ -171,6 +176,7 @@
     "/customers/delete/{id}": {
       "delete": {
         "tags": ["Clientes"],
+        "security":[{"bearerAuth":[]}],
         "summary":"Deletar cliente",
         "description": "",
         "parameters": [
@@ -198,6 +204,7 @@
     "/vehicles/": {
       "get": {
         "tags": ["Veículos"],
+        "security":[{"bearerAuth":[]}],
         "summary":"Retornar todos os Veículos",
         "description": "",
         "parameters": [],
@@ -206,6 +213,32 @@
             "description": "OK",
             "schema": {
               "$ref":"#/components/schemas/Veiculos"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },"/users/register": {
+      "get": {
+        "tags": ["Usuários"],
+        "summary":"Registrar usuário",
+        "description": "",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "schema": {
+              "$ref":"#/components/schemas/UsuariosCorpo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref":"#/components/schemas/UsuariosRetorno"
             }
           },
           "500": {
@@ -329,8 +362,6 @@
             "id": "3",
             "type": "Moto"
           }
-          
-    
       ],
       "items": {
         "type": "object"
@@ -339,6 +370,10 @@
   "ClienteRetorno":{
     "type":"object",
     "properties":{
+      "id": {
+        "type": "number",
+        "example": 1
+      },
       "name": {
         "type": "string",
         "example": "Guilherme"
@@ -415,7 +450,43 @@
       }
      
     }
+  },
+  "UsuariosRetorno":{
+    "type":"object",
+    "properties": {
+      "id":{
+        "type":"number",
+        "example":1
+      },
+      "email":{
+        "type":"string",
+        "example":"test@hotmail.com"
+      }
+    }
+  },
+  "UsuariosCorpo":{
+    "type":"object",
+    "properties": {
+      
+      "email":{
+        "type":"string",
+        "example":"test@hotmail.com"
+      },
+      "password":{
+        "type":"string",
+        "exampe":"123456"
+      }
+    }
   }
+  },
+  "securitySchemes":{
+    "bearerAuth":{
+      "type":"http",
+      "scheme":"bearer",
+      "bearerFormat":"JWT"
+    }
   }
+ 
   }
+  
 }

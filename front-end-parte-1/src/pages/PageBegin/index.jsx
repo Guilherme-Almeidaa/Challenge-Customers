@@ -16,16 +16,14 @@ function PageBegin() {
   const [messgeError, setMessageError] = useState("");
 
   const token = localStorage.getItem("token");
-
   useEffect(() => {
     if (search.length === 0) {
-      setIsLoading(true);
       requestAllCustomers(token)
         .then((response) => {
           setCustomers(response);
         })
         .catch((error) => {
-          setMessageError(`${error.message}`);
+          setMessageError(error.message);
         });
       setIsLoading(false);
     }
@@ -56,7 +54,7 @@ function PageBegin() {
               <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>Sobrenome</th>
+                <th>Sobrenome/Razão social</th>
                 <th>Tipo</th>
                 <th>Detalhes</th>
                 <th>Editar</th>

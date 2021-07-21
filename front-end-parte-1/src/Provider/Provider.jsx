@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  requestGetAllVehicles,
-  requestAllCustomers,
-} from "../api/customersApi";
+import { requestGetAllVehicles } from "../api/customersApi";
 import Context from "./context";
 
 function Provider({ children }) {
@@ -31,19 +28,8 @@ function Provider({ children }) {
   const [statusError, setStatusError] = useState(false);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [checkToken, setCheckToken] = useState(false);
 
   const token = localStorage.getItem("token");
-
-  const isAuthenticated = () => {
-    requestAllCustomers(token)
-      .then((response) => {
-        setCheckToken(true);
-      })
-      .catch((_error) => {
-        setCheckToken(false);
-      });
-  };
 
   const formatDate = (date) => {
     const dateFormated = new Date(date);
@@ -55,14 +41,12 @@ function Provider({ children }) {
   };
 
   useEffect(() => {
-    requestGetAllVehicles().then((response) => {
+    requestGetAllVehicles(token).then((response) => {
       setVehicles(response);
     });
-  }, []);
+  }, [token]);
 
   const context = {
-    isAuthenticated,
-    checkToken,
     isLoading,
     setIsLoading,
     search,

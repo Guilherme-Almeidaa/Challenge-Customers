@@ -33,7 +33,8 @@ function PageUserRegister() {
         })
         .catch((error) => {
           setStatusError(true);
-          setMessage(error.response.data.error.message);
+          const message = error.message || error.response.data.error.message;
+          setMessage(message);
           setIsLoading(false);
         });
     } else {

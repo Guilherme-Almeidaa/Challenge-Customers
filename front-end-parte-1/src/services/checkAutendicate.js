@@ -1,13 +1,13 @@
-
-import { requestAllCustomers } from '../api/customersApi';
-
-const token = localStorage.getItem('token');
-
-export const isAuthenticated = () => {
+import jwt from 'jsonwebtoken';
 
 
-
-
+export const isAuthenticated = (token) => {
+    const dateNow = new Date();
+    if (token) {
+        return jwt.decode(token).exp > dateNow / 1000
+    } else {
+        return false;
+    }
 }
 
 

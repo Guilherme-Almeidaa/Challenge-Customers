@@ -2,13 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { userLogin } from "../../api/usersApi";
 import MineLoading from "../../components/MineLoading";
-import { isAuthenticated } from "../../services/checkAutendicate";
+
 import context from "../../Provider/context";
 import "./style.css";
 
 function PageLogin() {
   const {
-    checkToken,
     setMessage,
     message,
     statusError,
@@ -20,31 +19,30 @@ function PageLogin() {
   const [password, setPassword] = useState("");
 
   const history = useHistory();
-  console.log(isAuthenticated());
-  useEffect(() => {
-    if (isAuthenticated().name) {
-      history.push("/customers");
-    }
-  }, [history, checkToken]);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     setMessage("");
-  }, [setMessage]);
+  }, [setMessage, token]);
   const handlerSubmit = (e) => {
     e.preventDefault();
-
     setIsLoading(true);
     userLogin({ email, password })
       .then((response) => {
         setStatusError(false);
-        setIsLoading(false);
         localStorage.setItem("token", response.token);
-        history.push("/customers");
         setMessage("");
+        setTimeout(() => {
+          history.push("/customers");
+          setIsLoading(false);
+        }, 2000);
       })
       .catch((error) => {
         setStatusError(true);
-        setMessage(error.response.data.error.message);
+        const message = error.response
+          ? error.response.data.error.message
+          : error.message;
+        setMessage(message);
         setIsLoading(false);
       });
   };
