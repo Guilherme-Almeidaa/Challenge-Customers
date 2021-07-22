@@ -58,6 +58,7 @@ function PageLogin() {
         <form onSubmit={handlerSubmit} className="form-login">
           <div className="container-input">
             <input
+              required
               value={email}
               onChange={({ target }) => setEmail(target.value)}
               className="input-login"
@@ -70,6 +71,7 @@ function PageLogin() {
           </div>
           <div className="container-input">
             <input
+              required
               value={password}
               onChange={({ target }) => setPassword(target.value)}
               className="input-login"

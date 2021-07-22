@@ -34,8 +34,8 @@ function PageUserRegister() {
         .catch((error) => {
           setStatusError(true);
           const message = error.response
-          ? error.response.data.error.message
-          : error.message;
+            ? error.response.data.error.message
+            : error.message;
           setMessage(message);
           setIsLoading(false);
         });
@@ -52,6 +52,7 @@ function PageUserRegister() {
         <form onSubmit={handlerSubmit} className="form-register">
           <div className="container-input">
             <input
+              required
               onChange={({ target }) => setEmail(target.value)}
               value={email}
               className="input-register"
@@ -64,6 +65,7 @@ function PageUserRegister() {
           </div>
           <div className="container-input">
             <input
+              required
               value={password}
               onChange={({ target }) => setPassword(target.value)}
               className="input-register"
@@ -76,6 +78,7 @@ function PageUserRegister() {
           </div>
           <div className="container-input">
             <input
+              required
               onChange={({ target }) => setConfirmPassword(target.value)}
               value={confirmPassword}
               className="input-register"

@@ -95,10 +95,13 @@ export const requestFindByName = async (name, token) => {
     })
 }
 
-export const requestDeleteCustomer = async (id) => {
+export const requestDeleteCustomer = async (id, token) => {
     const options = {
         method: 'DELETE',
         url: `${url}/customers/delete/${id}`,
+        headers: {
+            Authorization: token
+        },
     }
 
     return axios.request(options).then(response => {

@@ -34,7 +34,7 @@ function PageBegin() {
       "Tem certeza que deseja exluir o cliente?"
     );
     if (responseUser) {
-      requestDeleteCustomer(id).then((_response) => {
+      requestDeleteCustomer(id, token).then((_response) => {
         window.alert("Cliente Excluído");
       });
     }
