@@ -246,6 +246,39 @@
           }
         }
       }
+    },
+    "/users/login": {
+      "get": {
+        "tags": ["Usuários"],
+        "summary":"Registrar usuário",
+        "description": "",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "schema": {
+              "$ref":"#/components/schemas/UsuariosCorpo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type":"object",
+              "properties":{
+              "token": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXIiOiJndWlndWlfcy5hQGhvdG1haWwuY29tIiwiaWQiOjJ9LCJpYXQiOjE2MjcwNDk5MTcsImV4cCI6MTYyNzEzNjMxN30.GO-REgHO-g6rg3ZpWgrZXjU9Vxv3t9ZeLEp2kfdkDMQ"
+              }
+              }
+            }
+            },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -474,7 +507,7 @@
       },
       "password":{
         "type":"string",
-        "exampe":"123456"
+        "example":"123456"
       }
     }
   }
